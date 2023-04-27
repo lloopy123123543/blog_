@@ -11,6 +11,7 @@ import Login from './components/Login.vue'
     <div class="header">
       <div class="logo">Logo</div>
       <div class="cols">
+        <div class="col">   <router-link to="/">Главная</router-link> </div>
         
         <div class="col">SuS</div>
         <div class="col">sjsjs</div>
