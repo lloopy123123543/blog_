@@ -13,7 +13,7 @@ import Login from './components/Login.vue'
       <div class="cols">
         <div class="col">   <router-link to="/">Главная</router-link> </div>
         
-        <div class="col">SuS</div>
+        <div class="col">   <router-link to="/blogs">Блоги</router-link> </div>
         <div class="col">sjsjs</div>
         <div class="col">   <router-link to="/login">Login</router-link> </div>
       </div>

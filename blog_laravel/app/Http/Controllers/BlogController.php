@@ -56,7 +56,7 @@ class BlogController extends BaseController
             $token = explode(" ", $bearer)[1];
             $user = User::where("token", $token)->first();
             if ($user != null) {
-                $blog = Blogs::all() -> where("user_id", $user->id)->first();
+                $blog = Blogs::all() -> where("user_id", $user->id);
                 return response() -> json($blog);
             } else {
                 return response()->json(["data" => [
