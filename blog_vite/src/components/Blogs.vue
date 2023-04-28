@@ -1,18 +1,10 @@
-<script>
-export default {
+<script setup>
 
-}
 
 </script>
 
 <template>
-
-
-
-  <p>
-    Check out
-
-  </p>
+  
 
 </template>
 
