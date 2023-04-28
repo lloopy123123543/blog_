@@ -56,9 +56,8 @@ export default {
 
 <template>
   <button @click="blogs">Обновить</button>
-  <button @click="create_blog">Создать блог</button>
   <div v-for="blog in blogs_name" :key="blog.blog_name">
-      {{ blog.blog_name }} 
+      {{ blog.blog_name }} <button>Перейти</button>
   </div>
     <div class="popup_open">
         <input v-model="blog_name" type="text" placeholder="Title">
