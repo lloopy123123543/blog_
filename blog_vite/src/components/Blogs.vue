@@ -25,6 +25,22 @@ export default {
         })
 
 
+    },
+    create_blog(){
+      axios({
+        method: 'post',
+        url: 'http://localhost:8000/api/blogs/show/blogs',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+
+      })
+        .then(res => {
+          console.log(res.data)
+          this.blogs_name = res.data
+        })
+
     }
   }
 
@@ -34,6 +50,7 @@ export default {
 
 <template>
   <button @click="blogs">Обновить</button>
+  <button @click="create_blog">Создать блог</button>
   <div v-for="blog in blogs_name" :key="blog.blog_name">
 
       {{ blog.blog_name }}
