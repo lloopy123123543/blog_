@@ -4,7 +4,9 @@ export default {
   name: 'blogs',
   data() {
     return {
-      blogs_name: []
+      blogs_name: [],
+      blog_name:'',
+      text: '',
 
     }
   },
@@ -29,11 +31,15 @@ export default {
     create_blog(){
       axios({
         method: 'post',
-        url: 'http://localhost:8000/api/blogs/show/blogs',
+        url: 'http://localhost:8000/api/blogs/create/blog',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
+        data:{
+          blog_name: this.blog_name,
+          text: this.text
+        }
 
       })
         .then(res => {
@@ -52,9 +58,23 @@ export default {
   <button @click="blogs">Обновить</button>
   <button @click="create_blog">Создать блог</button>
   <div v-for="blog in blogs_name" :key="blog.blog_name">
-
-      {{ blog.blog_name }}
+      {{ blog.blog_name }} 
   </div>
+    <div class="popup_open">
+        <input v-model="blog_name" type="text" placeholder="Title">
+        <input v-model="text" type="text" placeholder="Text">
+        <div class="buttons">
+          <button  @click="create_blog">Добавить</button>
+          <button>Отмена</button>
+        </div>
+      </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.popup_open{
+  position: absolute;
+  width: 320px;
+  padding: 20px;
+  background-color: aquamarine;
+}
+</style>
