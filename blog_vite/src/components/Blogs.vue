@@ -7,6 +7,7 @@ export default {
       blogs_name: [],
       blog_name:'',
       text: '',
+      articles: []
 
     }
   },
@@ -22,8 +23,22 @@ export default {
 
       })
         .then(res => {
-          console.log(res.data)
+
           this.blogs_name = res.data
+        })
+
+        axios({
+        method: 'get',
+        url: 'http://localhost:8000/api/articles/show/article',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+
+      })
+        .then(res => {
+          console.log(res.data)
+          this.articles = res.data
         })
 
 
@@ -40,14 +55,28 @@ export default {
           blog_name: this.blog_name,
           text: this.text
         }
-
       })
         .then(res => {
           console.log(res.data)
           this.blogs_name = res.data
         })
+    },
+    show_articles(){
+      axios({
+        method: 'get',
+        url: 'http://localhost:8000/api/articles/show/articles',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
 
+      })
+        .then(res => {
+          console.log(res.data)
+          this.articles = res.data
+        })
     }
+
   }
 
 }
@@ -56,8 +85,13 @@ export default {
 
 <template>
   <button @click="blogs">Обновить</button>
-  <div v-for="blog in blogs_name" :key="blog.blog_name">
-      {{ blog.blog_name }} <button>Перейти</button>
+  <div class="div">
+    <div v-for="blog in blogs_name" :key="blog.id">
+      {{ blog.blog_name }}
+  </div>
+  <div v-for="article in articles" :key="article.id">
+      {{ article.text }}
+  </div>
   </div>
     <div class="popup_open">
         <input v-model="blog_name" type="text" placeholder="Title">
